@@ -1,4 +1,9 @@
 module.exports = {
+  configureWebpack: {
+    output: {
+      publicPath: '/static/',
+    },
+  },
   devServer: {
     proxy: {
       '/api': {
