@@ -1,11 +1,11 @@
 module.exports = {
   devServer: {
     proxy: {
-      "/api": {
-        target: "http://localhost:3333",
+      '/api': {
+        target: 'https://direcon-task.herokuapp.com',
       },
     },
   },
 
-  transpileDependencies: ["vuetify"],
+  transpileDependencies: ['vuetify'],
 };
