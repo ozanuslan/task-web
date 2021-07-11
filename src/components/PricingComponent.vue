@@ -33,8 +33,8 @@
     </v-card-text>
 
     <v-card-actions class="justify-center">
-      <v-btn width="60%" rounded v-on:click="onPricingClick">
-        Learn More
+      <v-btn block rounded v-on:click="onPricingClick">
+        Fetch All Events => Check Console
       </v-btn>
     </v-card-actions>
   </v-card>

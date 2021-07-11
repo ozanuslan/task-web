@@ -67,7 +67,7 @@ export default {
           password: this.password,
         };
         await axios
-          .post('http://localhost:3333/api/register', obj)
+          .post('https://direcon-task-api.herokuapp.com/api/register', obj)
           .catch(() => {
             return;
           });
@@ -80,9 +80,9 @@ export default {
           password: this.$store.state.password,
         };
 
-        console.log(patchObj);
+        console.log("Claimer's info = ", patchObj);
         await axios
-          .patch('http://localhost:3333/api/event', patchObj)
+          .patch('https://direcon-task-api.herokuapp.com/api/event', patchObj)
           .catch((error) => {
             console.log(error);
           });

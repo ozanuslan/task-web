@@ -24,7 +24,7 @@ export default {
     onSubmitClick: function () {
       let events = this.$store.state.events;
       const data = { events: events };
-      axios.post('http://localhost:3333/api/event', data);
+      axios.post('https://direcon-task-api.herokuapp.com/api/event', data);
       this.$store.state.events = [];
     },
   },
