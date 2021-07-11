@@ -6,7 +6,6 @@ module.exports = {
       },
     },
     disableHostCheck: true,
-    allowedHosts: ['.herokuapp.com', 'herokuapp.com', 'localhost'],
   },
 
   transpileDependencies: ['vuetify'],
