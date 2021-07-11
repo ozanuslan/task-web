@@ -6,7 +6,7 @@
       class="mx-auto ma-12 pa-6"
       max-width="600"
     >
-      <v-form v-model="isValid">
+      <v-form v-model="valid">
         <v-text-field
           v-model="email"
           :rules="emailRules"
@@ -21,18 +21,27 @@
           required
         ></v-text-field>
 
-        <v-btn color="success" type="submit">Register</v-btn>
+        <v-btn
+          :disabled="!valid"
+          color="success"
+          class="mr-4"
+          v-on:click="register"
+        >
+          Register
+        </v-btn>
       </v-form>
     </v-card>
   </v-container>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'Register',
   data() {
     return {
-      isValid: false,
+      valid: false,
       email: '',
       password: '',
       emailRules: [
@@ -46,10 +55,42 @@ export default {
       passwordRules: [
         (v) => !!v || 'Password is required',
         (v) => v.length > 3 || 'Password must be more than 3 characters',
-        (v) => v.length <= 16 || 'Password must be less than 16 characters',
+        (v) => v.length <= 32 || 'Password must be less than 32 characters',
       ],
     };
   },
-  methods: {},
+  methods: {
+    register: async function () {
+      try {
+        const obj = {
+          email: this.email,
+          password: this.password,
+        };
+        await axios
+          .post('http://localhost:3333/api/register', obj)
+          .catch(() => {
+            return;
+          });
+        this.$store.state.email = this.email;
+        this.$store.state.password = this.password;
+
+        const patchObj = {
+          session_id: this.$store.state.session_id,
+          email: this.$store.state.email,
+          password: this.$store.state.password,
+        };
+
+        console.log(patchObj);
+        await axios
+          .patch('http://localhost:3333/api/event', patchObj)
+          .catch((error) => {
+            console.log(error);
+          });
+        this.$router.push('/');
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  },
 };
 </script>

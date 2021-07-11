@@ -22,6 +22,14 @@
         <h5>{{ text }}</h5>
         <v-divider class="mx-4"></v-divider>
       </div>
+      <div
+        v-for="event in this.$store.stateevents"
+        :key="event"
+        class="text-center"
+      >
+        <h5>{{ event }}</h5>
+        <v-divider class="mx-4"></v-divider>
+      </div>
     </v-card-text>
 
     <v-card-actions class="justify-center">
@@ -33,6 +41,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name: 'PricingComponent',
   data() {
@@ -49,12 +58,20 @@ export default {
   methods: {
     mouseEnter: function () {
       this.hover = true;
+      const state = this.$store.state;
+      state.events.push({
+        session_id: state.session_id,
+        email: state.email,
+        event: 'hover',
+      });
     },
     mouseLeave: function () {
       this.hover = false;
     },
-    onPricingClick: function () {
-      console.log('Pricing card clicked!');
+    onPricingClick: async function () {
+      console.log(
+        await axios.get('http://direcon-task-api.herokuapp.com/api/event/all')
+      );
     },
   },
 };

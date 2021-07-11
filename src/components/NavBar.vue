@@ -34,7 +34,12 @@ export default {
   name: 'NavBar',
   methods: {
     onPricingClick: function () {
-      console.log('Pricing clicked!');
+      const state = this.$store.state;
+      state.events.push({
+        session_id: state.session_id,
+        email: state.email,
+        event: 'click',
+      });
     },
   },
 };
