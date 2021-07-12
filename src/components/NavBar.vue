@@ -34,12 +34,14 @@ export default {
   name: 'NavBar',
   methods: {
     onPricingClick: function () {
-      const state = this.$store.state;
-      state.events.push({
-        session_id: state.session_id,
-        email: state.email,
-        event: 'click',
-      });
+      if (this.$store.state.session_id !== null) {
+        const state = this.$store.state;
+        state.events.push({
+          session_id: state.session_id,
+          email: state.email,
+          event: 'click',
+        });
+      }
     },
   },
 };

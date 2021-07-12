@@ -21,10 +21,13 @@ export default {
     PricingComponent,
   },
   methods: {
-    onSubmitClick: function () {
+    onSubmitClick: async function () {
       let events = this.$store.state.events;
       const data = { events: events };
-      axios.post('https://direcon-task-api.herokuapp.com/api/event', data);
+      await axios.post(
+        'https://direcon-task-api.herokuapp.com/api/event',
+        data
+      );
       this.$store.state.events = [];
     },
   },

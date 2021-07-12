@@ -59,11 +59,13 @@ export default {
     mouseEnter: function () {
       this.hover = true;
       const state = this.$store.state;
-      state.events.push({
-        session_id: state.session_id,
-        email: state.email,
-        event: 'hover',
-      });
+      if (this.$store.state.session_id !== null) {
+        state.events.push({
+          session_id: state.session_id,
+          email: state.email,
+          event: 'hover',
+        });
+      }
     },
     mouseLeave: function () {
       this.hover = false;
