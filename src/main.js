@@ -20,7 +20,7 @@ new Vue({
   methods: {
     async retrieveSessionId() {
       const res = await axios.get(
-        'http://direcon-task-api.herokuapp.com/api/session'
+        'https://direcon-task-api.herokuapp.com/api/session'
       );
       this.$store.state.session_id = res.data.session_id;
       console.log('Session id: ' + res.data.session_id);

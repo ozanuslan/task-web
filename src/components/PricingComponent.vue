@@ -72,7 +72,7 @@ export default {
     },
     onPricingClick: async function () {
       console.log(
-        await axios.get('http://direcon-task-api.herokuapp.com/api/event/all')
+        await axios.get('https://direcon-task-api.herokuapp.com/api/event/all')
       );
     },
   },
